@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom PC Builds | Performance Per Dollar</title>
-
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="./favicon.png">
     <style>
         * {
             margin: 0;
@@ -23,7 +22,7 @@
         .header {
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: white;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -36,6 +35,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -46,8 +47,9 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -97,11 +99,18 @@
             font-weight: 600;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 25px rgba(0, 212, 255, 0.5);
+        }
+
+        .cta-button.green {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
         }
 
         .section {
@@ -281,6 +290,91 @@
             margin-bottom: 2rem;
         }
 
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .review-form {
+            background: #1a1a2e;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .review-form h3 {
+            color: #00d4ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-input {
+            background: #0f1419;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 0.75rem;
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+
+        .star.filled {
+            color: #00ff88;
+        }
+
+        .star.empty {
+            color: #666;
+        }
+
+        .message {
+            background: rgba(0, 200, 100, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
         .footer {
             background: #0a0a0a;
             color: #888;
@@ -289,17 +383,58 @@
             border-top: 1px solid #333;
         }
 
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .terms-section {
+            background: #16213e;
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            color: #ddd;
+        }
+
+        .terms-section h3 {
+            color: #00d4ff;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .terms-section h3:first-child {
+            margin-top: 0;
+        }
+
+        .terms-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .terms-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
             
-            .nav-links {
-                display: none;
-            }
-            
             .section-title {
                 font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
             }
         }
     </style>
@@ -313,6 +448,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#why">Why Choose Us</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#terms">Terms</a></li>
                 </ul>
@@ -460,6 +596,48 @@
         </div>
     </section>
 
+    <section class="section" id="reviews">
+        <h2 class="section-title">What Clients Say</h2>
+
+        <div id="submitMessage" class="message hidden"></div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <button id="toggleFormBtn" class="cta-button">Leave a Review</button>
+        </div>
+
+        <div id="reviewForm" class="review-form hidden">
+            <h3>Share Your Experience</h3>
+            <div class="form-row">
+                <input type="text" id="reviewName" class="form-input" placeholder="Your Name" required>
+                <input type="email" id="reviewEmail" class="form-input" placeholder="Your Email (not shown publicly)" required>
+            </div>
+            
+            <div>
+                <label style="color: #ddd; margin-bottom: 0.5rem; display: block;">Rating</label>
+                <div class="star-rating" id="starRating">
+                    <span class="star filled" data-rating="1">★</span>
+                    <span class="star filled" data-rating="2">★</span>
+                    <span class="star filled" data-rating="3">★</span>
+                    <span class="star filled" data-rating="4">★</span>
+                    <span class="star filled" data-rating="5">★</span>
+                </div>
+            </div>
+
+            <textarea id="reviewText" class="form-input" rows="4" placeholder="Tell us about your experience..." required></textarea>
+
+            <button id="submitReviewBtn" class="cta-button green" style="width: 100%; margin-top: 1rem;">Submit Review</button>
+        </div>
+
+        <div id="reviewsContainer" class="services-grid">
+            <p style="text-align: center; color: #888; grid-column: 1/-1;">Loading reviews...</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: #ddd; font-size: 1.2rem; margin-bottom: 1rem;">Ready to join them?</p>
+            <a href="#contact" class="cta-button">Get Your Free Consultation</a>
+        </div>
+    </section>
+
     <section class="section">
         <h2 class="section-title">My Philosophy</h2>
         <div style="background: #16213e; border-radius: 15px; padding: 3rem; text-align: center;">
@@ -474,10 +652,9 @@
             <h2>Ready to Build Your Perfect PC?</h2>
             <p>Get started with a free consultation. No pressure, no obligation.</p>
             
-            <!-- REPLACE THE LINKS BELOW WITH YOUR ACTUAL LINKS -->
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <div class="button-group">
                 <a href="https://www.facebook.com/marketplace/profile/100034813772562" target="_blank" class="cta-button">Facebook Marketplace</a>
-                <a href="sms:+18125309101" class="cta-button" style="background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);">Text Me</a>
+                <a href="sms:+18125309101" class="cta-button green">Text Me</a>
             </div>
             
             <p style="margin-top: 1.5rem; font-size: 0.95rem;">Local service. Fast turnaround. Built right.</p>
@@ -487,132 +664,35 @@
     <section class="section" id="terms">
         <h2 class="section-title">Terms & Buyer Agreement</h2>
         
-        <div style="background: #16213e; border-radius: 15px; padding: 3rem; max-width: 900px; margin: 0 auto;">
-            <div style="color: #ddd; line-height: 1.8;">
-                
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Payment Terms</h3>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li><strong>No parts are purchased without funds received first</strong></li>
-                    <li>Option 1: Client purchases parts directly, I assemble and optimize</li>
-                    <li>Option 2: Client pays upfront, I purchase parts and provide all receipts</li>
-                    <li>Build labor fee is due at pickup or upon completion</li>
-                    <li>Repair/upgrade fees are due upon completion of service</li>
-                </ul>
+        <div class="terms-section">
+            <h3>Payment Terms</h3>
+            <ul>
+                <li><strong>No parts are purchased without funds received first</strong></li>
+                <li>Option 1: Client purchases parts directly, I assemble and optimize</li>
+                <li>Option 2: Client pays upfront, I purchase parts and provide all receipts</li>
+                <li>Build labor fee is due at pickup or upon completion</li>
+            </ul>
 
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Used Parts Policy</h3>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li>All used parts are stress tested before installation</li>
-                    <li>Used parts require written agreement from client before purchase</li>
-                    <li>Client acknowledges used parts may have shorter lifespan than new</li>
-                    <li>Used parts typically have no manufacturer warranty</li>
-                    <li>Photos of serial numbers provided for all used components</li>
-                </ul>
+            <h3>Used Parts Policy</h3>
+            <ul>
+                <li>All used parts are stress tested before installation</li>
+                <li>Used parts require written agreement from client before purchase</li>
+                <li>Client acknowledges used parts may have shorter lifespan than new</li>
+                <li>Used parts typically have no manufacturer warranty</li>
+            </ul>
 
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">1-Year Build Support (Not a Warranty)</h3>
-                <p style="margin-bottom: 1rem;"><strong>This is NOT a parts warranty. This is labor support for builds I complete.</strong></p>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li>25% off labor for troubleshooting and fixes within 1 year of build date</li>
-                    <li>$10 flat fee for quick software issues (drivers, updates, settings)</li>
-                    <li>Free advice via text/message within reason</li>
-                    <li><strong>Does NOT cover:</strong> Physical damage, liquid damage, power surge damage, component failure, malware/viruses from user activity, damage from user modifications or overclocking beyond my settings</li>
-                    <li>Hardware component failures are covered by manufacturer warranties only</li>
-                    <li>Client is responsible for cost of replacement parts</li>
-                    <li>Any overclocking may be reverted to stock settings during troubleshooting</li>
-                </ul>
+            <h3>1-Year Build Support (Not a Warranty)</h3>
+            <p><strong>This is NOT a parts warranty. This is labor support for builds I complete.</strong></p>
+            <ul>
+                <li>25% off labor for troubleshooting and fixes within 1 year of build date</li>
+                <li>$10 flat fee for quick software issues (drivers, updates, settings)</li>
+                <li>Free advice via text/message within reason</li>
+                <li><strong>Does NOT cover:</strong> Physical damage, liquid damage, power surge damage, component failure, malware/viruses from user activity</li>
+                <li>Hardware component failures are covered by manufacturer warranties only</li>
+            </ul>
 
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Performance & Optimization</h3>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li>All builds are optimized for stability first, performance second</li>
-                    <li>Gaming optimization (overclocking) is optional and requires client consent</li>
-                    <li>No extreme overclocks are performed - safe limits only</li>
-                    <li>Specific FPS guarantees cannot be made due to game updates and variations</li>
-                    <li>Performance is optimized for the use case provided by client</li>
-                </ul>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Client Responsibilities</h3>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li>Provide accurate budget and use case information</li>
-                    <li>Approve all part selections before purchase</li>
-                    <li>Review and sign off on used parts agreement if applicable</li>
-                    <li>Pick up completed builds within 7 days of notification</li>
-                    <li>Maintain basic system care (dust cleaning, avoid physical damage)</li>
-                    <li>Use antivirus/antimalware software to protect the system</li>
-                </ul>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Limitation of Liability</h3>
-                <ul style="margin-bottom: 2rem; margin-left: 1.5rem;">
-                    <li>I am not liable for component failures due to manufacturer defects - these are covered by manufacturer warranties</li>
-                    <li>I am not liable for data loss - clients should maintain backups</li>
-                    <li>I am not liable for damage caused by improper use, modifications, or environmental factors after delivery</li>
-                    <li>Maximum liability is limited to the labor fee paid for the service</li>
-                </ul>
-
-                <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 152, 0, 0.1); border-left: 4px solid #ff9800; border-radius: 5px;">
-                    <strong>By proceeding with service, client acknowledges they have read, understood, and agree to these terms.</strong>
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="disclaimer">
-        <h2 class="section-title">Disclaimer</h2>
-        
-        <div style="background: #16213e; border-radius: 15px; padding: 3rem; max-width: 900px; margin: 0 auto;">
-            <div style="color: #ddd; line-height: 1.8;">
-                
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">General Service Disclaimer</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    I provide custom PC building, repair, and optimization services as an individual service provider. I am not a registered business entity, nor do I represent any manufacturer or retail brand. All services are provided on an as-is basis with the understanding that computer hardware can be unpredictable.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">No Manufacturer Warranties Provided</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    I do not provide manufacturer warranties. All new parts come with their original manufacturer warranties, which are the responsibility of the client to claim if needed. I can assist with warranty claims as a courtesy, but I am not responsible for manufacturer warranty processes or outcomes.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Performance Expectations</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    While I optimize every build for maximum performance within budget constraints, I cannot guarantee specific frame rates, benchmark scores, or performance metrics. Game performance varies based on updates, driver changes, and individual game optimization. I optimize for real-world usage, not benchmark records.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Used Parts & Component Lifespan</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    Used components are tested but may have reduced remaining lifespan compared to new parts. While I test all used parts thoroughly, I cannot predict how long they will continue to function. Used parts typically have no manufacturer warranty. Clients using used parts acknowledge and accept this risk.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Overclocking & Performance Tuning</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    Performance tuning and overclocking can reduce component lifespan and increase risk of instability. All overclocking is performed conservatively within safe limits, but there is inherent risk. Clients who opt for overclocking services acknowledge this risk. Overclocked settings may be reverted during troubleshooting.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Data & Software</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    I am not responsible for data loss, software compatibility issues, or data recovery. Clients should maintain backups of important data. Operating system installations are provided as-is with basic drivers. Client is responsible for their own software licenses and installations beyond the base OS.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Pricing Clarity</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    <strong>All pricing listed on this website is for LABOR ONLY.</strong> This includes assembly, optimization, testing, and tuning services. The cost of computer parts and components is separate and additional. Total project cost = Parts cost + Labor fee. Parts must be paid for separately before any work begins.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Service Limitations</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    I reserve the right to decline any project that is unrealistic, beyond my capabilities, or not a good fit. This includes but is not limited to: unrealistic budget expectations, laptop motherboard repairs, complex data recovery, or requests that would result in poor client experience.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Abandoned Property</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    Systems not picked up within 30 days of completion notification may be considered abandoned. Client will be contacted multiple times before this occurs. Abandoned systems may be disassembled and parts recycled to recover costs.
-                </p>
-
-                <h3 style="color: #00d4ff; margin-bottom: 1rem;">Service Area & Availability</h3>
-                <p style="margin-bottom: 1.5rem;">
-                    Services are provided locally in Scottsburg, IN and surrounding areas. Turnaround times are estimates, not guarantees. Priority service (48-hour turnaround) is subject to availability and may not always be possible.
-                </p>
-
-                <p style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 212, 255, 0.1); border-left: 4px solid #00d4ff; border-radius: 5px;">
-                    <strong>Questions about these terms?</strong> Contact me before proceeding with any service. I'm happy to clarify anything you're unsure about. Transparency is key to a good experience.
-                </p>
+            <div class="warning-box">
+                <strong>By proceeding with service, client acknowledges they have read, understood, and agree to these terms.</strong>
             </div>
         </div>
     </section>
@@ -620,7 +700,124 @@
     <footer class="footer">
         <p>Serving Scottsburg, IN and surrounding areas</p>
         <p style="margin-top: 0.5rem;">Built to your budget. Optimized for your needs.</p>
-        <p style="margin-top: 1rem;"><a href="#terms" style="color: #00d4ff; text-decoration: none;">Terms & Buyer Agreement</a> | <a href="#disclaimer" style="color: #00d4ff; text-decoration: none;">Disclaimer</a></p>
+        <p style="margin-top: 1rem;"><a href="#terms">Terms & Buyer Agreement</a></p>
     </footer>
+
+    <script>
+        // Review system using in-memory storage (would need backend for persistence)
+        let reviews = [];
+        let currentRating = 5;
+
+        // Load reviews from memory
+        function loadReviews() {
+            const container = document.getElementById('reviewsContainer');
+            
+            if (reviews.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #888; grid-column: 1/-1;">No reviews yet. Be the first to share your experience!</p>';
+                return;
+            }
+
+            container.innerHTML = reviews.map(review => `
+                <div class="service-card">
+                    <div style="margin-bottom: 1rem;">
+                        <span style="color: #00ff88; font-size: 1.5rem;">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">
+                        "${review.review}"
+                    </p>
+                    <p style="color: #00d4ff; font-weight: 600;">- ${review.name}</p>
+                    <p style="color: #666; font-size: 0.85rem; margin-top: 0.5rem;">
+                        ${new Date(review.timestamp).toLocaleDateString()}
+                    </p>
+                </div>
+            `).join('');
+        }
+
+        // Toggle form
+        document.getElementById('toggleFormBtn').addEventListener('click', () => {
+            const form = document.getElementById('reviewForm');
+            const btn = document.getElementById('toggleFormBtn');
+            
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                btn.textContent = 'Cancel';
+            } else {
+                form.classList.add('hidden');
+                btn.textContent = 'Leave a Review';
+            }
+        });
+
+        // Star rating
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = parseInt(star.dataset.rating);
+                updateStars();
+            });
+        });
+
+        function updateStars() {
+            document.querySelectorAll('.star').forEach((star, index) => {
+                if (index < currentRating) {
+                    star.classList.add('filled');
+                    star.classList.remove('empty');
+                } else {
+                    star.classList.remove('filled');
+                    star.classList.add('empty');
+                }
+            });
+        }
+
+        // Submit review
+        document.getElementById('submitReviewBtn').addEventListener('click', () => {
+            const name = document.getElementById('reviewName').value.trim();
+            const email = document.getElementById('reviewEmail').value.trim();
+            const reviewText = document.getElementById('reviewText').value.trim();
+            
+            if (!name || !email || !reviewText) {
+                showMessage('Please fill out all fields');
+                return;
+            }
+
+            const newReview = {
+                name,
+                email,
+                rating: currentRating,
+                review: reviewText,
+                timestamp: Date.now(),
+                id: Date.now()
+            };
+
+            reviews.unshift(newReview);
+            
+            // Clear form
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewEmail').value = '';
+            document.getElementById('reviewText').value = '';
+            currentRating = 5;
+            updateStars();
+            
+            // Hide form
+            document.getElementById('reviewForm').classList.add('hidden');
+            document.getElementById('toggleFormBtn').textContent = 'Leave a Review';
+            
+            // Reload reviews
+            loadReviews();
+            
+            // Show success message
+            showMessage('Thank you! Your review has been posted.');
+        });
+
+        function showMessage(text) {
+            const msg = document.getElementById('submitMessage');
+            msg.textContent = text;
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Load reviews on page load
+        loadReviews();
+    </script>
 </body>
 </html>
