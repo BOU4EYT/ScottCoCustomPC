@@ -443,6 +443,50 @@
                 gap: 1rem;
             }
         }
+        .faq-item {
+            background: #1a1a2e;
+            border-radius: 10px;
+            border: 1px solid rgba(0,212,255,0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #ddd;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover { color: #00d4ff; }
+
+        .faq-icon {
+            font-size: 1.4rem;
+            color: #00d4ff;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.25rem;
+            color: #aaa;
+            line-height: 1.7;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-item.open .faq-question { color: #00d4ff; }
+
     </style>
 </head>
 <body>
@@ -457,6 +501,7 @@
                     <li><a href="#why">Why Choose Us</a></li>
                     <li><a href="#builds">Builds</a></li>
                     <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#terms">Terms</a></li>
                 </ul>
@@ -586,7 +631,7 @@
 
                 <div class="pricing-card">
                     <h3>Standard Build</h3>
-                    <div class="price">$70-90</div>
+                    <div class="price">$100-120</div>
                     <ul>
                         <li>Complete assembly</li>
                         <li>OS & drivers</li>
@@ -609,7 +654,7 @@
             </div>
 
             <div style="margin-top: 2rem; text-align: center; color: #ddd;">
-                <p><strong>Add-Ons:</strong> Advanced sourcing (+$30) | Gamer tuning (+$25-40) | Priority 48h (+$25)</p>
+                <p><strong>Add-Ons:</strong> Advanced sourcing (+$30) | Gamer tuning (+$25-40) | Priority 48h (+$35)</p>
                 <p style="margin-top: 1rem; color: #ff9800; font-weight: 600;">⚠️ Pricing above is for BUILD LABOR ONLY - does not include cost of parts/components</p>
             </div>
         </div>
@@ -745,17 +790,108 @@
         </div>
     </section>
 
+    <section class="section" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;">
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do I need to buy the parts myself? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Your choice. You can buy the parts yourself and I assemble — or give me a budget and I source everything and hand you receipts for every purchase. No mystery markups.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How long does a build take? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Most builds are done within 48–72 hours of receiving all parts. Need it faster? The Priority 48hr add-on bumps you to the front of the queue for an extra $35.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What if something goes wrong after the build? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Every build comes with 1-year build support. That means 25% off labor for any fixes, $10 flat for software issues, and free advice via text whenever you need it. Note: this covers my labor, not part failures — those go through the manufacturer warranty.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can you work with any budget? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Pretty much. I've built machines at a range of price points. I'll always be upfront if a budget isn't realistic for what you want — and I'll tell you what it would realistically get you instead.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you use used parts? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Only if you want me to. Used parts can stretch a budget significantly, but I'll always be upfront about the tradeoffs. Every used part gets stress tested before installation, and you sign off on it before anything is ordered.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you do repairs on PCs you didn't build? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    Yes. Upgrades, repairs, OS installs, diagnostics — bring it in regardless of where it was built or bought. Pricing starts at $10 for quick software fixes.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Where are you located? Do you offer pickup/dropoff? <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    I'm based in Scottsburg, IN and serve the surrounding area. Reach out and we'll figure out the logistics — most jobs are handled locally with easy dropoff and pickup.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="section" id="contact">
         <div class="contact-section">
             <h2>Ready to Build Your Perfect PC?</h2>
-            <p>Get started with a free consultation. No pressure, no obligation.</p>
-            
-            <div class="button-group">
+            <p>Fill out the form below — I'll get back to you within 24 hours. Free consultation, no obligation.</p>
+
+            <div id="quoteMessage" class="message hidden" style="max-width:600px;margin:1rem auto;"></div>
+
+            <form id="quoteForm" style="max-width:600px;margin:2rem auto;text-align:left;">
+                <div class="form-row" style="margin-bottom:1rem;">
+                    <input type="text" id="qName" class="form-input" placeholder="Your Name" required>
+                    <input type="email" id="qEmail" class="form-input" placeholder="Your Email" required>
+                </div>
+                <input type="tel" id="qPhone" class="form-input" placeholder="Phone Number (optional)" style="margin-bottom:1rem;">
+                <select id="qService" class="form-input" style="margin-bottom:1rem;">
+                    <option value="" disabled selected>What do you need?</option>
+                    <option value="New Custom Build">New Custom Build</option>
+                    <option value="Repair or Upgrade">Repair or Upgrade</option>
+                    <option value="Performance Tuning">Performance Tuning</option>
+                    <option value="OS Install / Cleanup">OS Install / Cleanup</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                </select>
+                <input type="text" id="qBudget" class="form-input" placeholder="Budget (e.g. $500, not sure yet)" style="margin-bottom:1rem;">
+                <textarea id="qDetails" class="form-input" rows="4" placeholder="Any details — what you'll use it for, current specs, issues you're having..." style="margin-bottom:1rem;"></textarea>
+                <button type="button" id="submitQuoteBtn" class="cta-button green" style="width:100%;">Send My Request</button>
+            </form>
+
+            <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
                 <a href="https://www.facebook.com/marketplace/profile/100034813772562" target="_blank" class="cta-button">Facebook Marketplace</a>
-                <a href="sms:+18125309101" class="cta-button green">Text Me</a>
+                <a href="sms:+18125309101" class="cta-button" style="background:transparent;border:2px solid #00d4ff;box-shadow:none;">Text Me Directly</a>
             </div>
-            
-            <p style="margin-top: 1.5rem; font-size: 0.95rem;">Local service. Fast turnaround. Built right.</p>
+
+            <p style="margin-top:1.5rem;font-size:0.95rem;">Local service. Fast turnaround. Built right.</p>
         </div>
     </section>
 
@@ -839,12 +975,18 @@
         const SUPABASE_URL = 'https://wvwbznozgfxuxewysnrv.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2d2J6bm96Z2Z4dXhld3lzbnJ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Njc5NjgsImV4cCI6MjA4OTU0Mzk2OH0.0VJOSXtGKEeVwIUfN7zxucOs8FOqvkRpnhMDOB_1Gow';
 
-        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const SUPABASE_READY = SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY';
+        const db = SUPABASE_READY ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
         let currentRating = 5;
 
         async function loadReviews() {
             const container = document.getElementById('reviewsContainer');
+
+            if (!SUPABASE_READY) {
+                container.innerHTML = '<p style="text-align:center;color:#888;grid-column:1/-1;">Reviews coming soon.</p>';
+                return;
+            }
 
             const { data, error } = await db
                 .from('reviews')
@@ -915,6 +1057,11 @@
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
+            if (!SUPABASE_READY) {
+                showMessage('Reviews not configured yet.', false);
+                return;
+            }
+
             const { error } = await db
                 .from('reviews')
                 .insert([{ name, email, rating: currentRating, review: reviewText }]);
@@ -951,6 +1098,72 @@
             msg.classList.remove('hidden');
             setTimeout(() => msg.classList.add('hidden'), 5000);
         }
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            item.classList.toggle('open');
+        }
+
+        // Quote form — Formspree
+        // ⬇️ PASTE YOUR FORMSPREE ENDPOINT HERE
+        // 1. Sign up free at https://formspree.io
+        // 2. Create a new form using adminSCPC@protonmail.com
+        // 3. Copy the endpoint (https://formspree.io/f/xxxxxxxx) and paste below
+        const WEB3FORMS_KEY = 'f673a08a-7599-485c-aaab-bf4ad10b07a7';
+
+        document.getElementById('submitQuoteBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('submitQuoteBtn');
+            const msg = document.getElementById('quoteMessage');
+
+            const name    = document.getElementById('qName').value.trim();
+            const email   = document.getElementById('qEmail').value.trim();
+            const phone   = document.getElementById('qPhone').value.trim();
+            const service = document.getElementById('qService').value;
+            const budget  = document.getElementById('qBudget').value.trim();
+            const details = document.getElementById('qDetails').value.trim();
+
+            if (!name || !email || !service) {
+                msg.textContent = 'Please fill in your name, email, and service type.';
+                msg.style.color = '#ff4444';
+                msg.style.borderColor = '#ff4444';
+                msg.style.background = 'rgba(255,68,68,0.1)';
+                msg.classList.remove('hidden');
+                return;
+            }
+
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: WEB3FORMS_KEY,
+                        subject: `New quote request from ${name}`,
+                        name, email, phone, service, budget, details
+                    })
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById('quoteForm').innerHTML = '<p style="text-align:center;color:#00ff88;font-size:1.1rem;padding:2rem 0;">✓ Request sent! I\'ll get back to you within 24 hours.</p>';
+                    msg.classList.add('hidden');
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (e) {
+                msg.textContent = 'Something went wrong. Please text me directly or try again.';
+                msg.style.color = '#ff4444';
+                msg.style.borderColor = '#ff4444';
+                msg.style.background = 'rgba(255,68,68,0.1)';
+                msg.classList.remove('hidden');
+                btn.textContent = 'Send My Request';
+                btn.disabled = false;
+            }
+        });
 
         // Initial load
         loadReviews();
