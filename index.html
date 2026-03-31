@@ -65,6 +65,20 @@ section{border-bottom:1px solid var(--border);}
 .service-perks li{font-size:0.82rem;color:var(--muted);padding:0.4rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
 .service-perks li:last-child{border-bottom:none;}
 .service-perks li::before{content:'→';color:var(--red);font-family:var(--mono);font-size:0.75rem;}
+.poweradream-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:2rem;}
+.poweradream-panel{background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:2rem;display:flex;flex-direction:column;gap:1.25rem;}
+.poweradream-progress-wrap{display:flex;flex-direction:column;gap:0.75rem;}
+.poweradream-progress-header{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:0.82rem;letter-spacing:0.08em;color:var(--muted);}
+.progress-bar{background:var(--border);border-radius:999px;overflow:hidden;height:14px;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--red),#eb5757);width:0%;transition:width 0.4s ease;}
+.poweradream-forum-intro{font-size:0.95rem;color:var(--muted);line-height:1.7;}
+.poweradream-card{background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:1.25rem;}
+.poweradream-card-meta{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);margin-top:0.75rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+.poweradream-card-status{font-family:var(--mono);font-size:0.65rem;padding:0.25rem 0.5rem;border-radius:1px;text-transform:uppercase;}
+.poweradream-card-status.approved{background:rgba(29,185,84,0.15);color:var(--green);border:1px solid rgba(29,185,84,0.3);}
+.poweradream-card-status.pending{background:rgba(255,167,38,0.12);color:#f5a623;border:1px solid rgba(245,166,35,0.3);}
+.poweradream-card-status.rejected{background:rgba(230,48,48,0.12);color:var(--red);border:1px solid rgba(230,48,48,0.3);}
+
 /* CUSTOM BLOCKS */
 .custom-blocks{display:flex;flex-direction:column;gap:1.5rem;}
 .custom-block{background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:2rem;}
@@ -207,7 +221,7 @@ textarea.admin-input{resize:vertical;min-height:90px;font-family:var(--body);}
 .sql-box p{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
 .sql-code{background:var(--bg);border:1px solid var(--border2);border-radius:1px;padding:1.25rem;font-family:var(--mono);font-size:0.75rem;color:#7ec8e3;line-height:1.7;white-space:pre-wrap;margin-bottom:1.5rem;user-select:all;}
 .sql-step{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;color:var(--red);margin-bottom:0.5rem;text-transform:uppercase;}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:3rem;}.contact-grid{grid-template-columns:1fr;}.admin-sidebar{width:180px;}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:3rem;}.contact-grid{grid-template-columns:1fr;}.admin-sidebar{width:180px;}.poweradream-grid{grid-template-columns:1fr;}}
 @media(max-width:640px){.nav-links{display:none;}.hamburger{display:flex;}.hero h1{font-size:3.5rem;}.form-row{grid-template-columns:1fr;}.admin-body{flex-direction:column;}.admin-sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border);}}
 </style>
 </head>
@@ -218,6 +232,7 @@ textarea.admin-input{resize:vertical;min-height:90px;font-family:var(--body);}
     <a class="logo" href="#"><span class="logo-bar"></span>RAWPOWER</a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#poweradream">PowerADream</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="#terms">Terms</a></li>
@@ -227,6 +242,7 @@ textarea.admin-input{resize:vertical;min-height:90px;font-family:var(--body);}
   </div>
   <div class="mobile-nav" id="mobile-nav">
     <a href="#services" onclick="this.closest('.mobile-nav').classList.remove('open')">Services</a>
+    <a href="#poweradream" onclick="this.closest('.mobile-nav').classList.remove('open')">PowerADream</a>
     <a href="#faq" onclick="this.closest('.mobile-nav').classList.remove('open')">FAQ</a>
     <a href="#reviews" onclick="this.closest('.mobile-nav').classList.remove('open')">Reviews</a>
     <a href="#terms" onclick="this.closest('.mobile-nav').classList.remove('open')">Terms</a>
@@ -256,6 +272,8 @@ textarea.admin-input{resize:vertical;min-height:90px;font-family:var(--body);}
 </section>
 
 <section id="services"><div class="wrap"><div class="sec-label">What I Do</div><div class="sec-title">SERVICES</div><div class="services-grid" id="services-render"></div></div></section>
+
+<section id="poweradream"><div class="wrap"><div class="sec-label">Opportunity</div><div class="sec-title">POWERADREAM</div><div class="poweradream-grid"><div class="poweradream-panel"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;"><div><div class="admin-card-title">PowerADream Program</div><p id="poweradream-copy" class="custom-block-body">PowerADream is for less fortunate families to apply for a donated gaming setup. Every 25 sales funds one donated setup to a youth in need.</p></div></div><div class="poweradream-progress-wrap"><div class="poweradream-progress-header"><span>Sales until next donated setup</span><span id="poweradream-progress-text">0 of 25</span></div><div class="progress-bar"><div class="progress-fill" id="poweradream-progress-fill"></div></div></div><div class="poweradream-forum-intro">Less fortunate families can apply here for a donated gaming setup. Admin approves applications and shares approved family highlights below.</div><div id="poweradream-forum" class="reviews-grid"><p style="color:var(--muted);font-family:var(--mono);font-size:0.8rem;grid-column:1/-1;">Loading approved family applications…</p></div></div><div class="poweradream-panel"><div class="admin-card-title">Apply Now</div><div class="form-group"><label class="form-label">Name *</label><input type="text" id="pa-name" class="form-input" placeholder="Your name"></div><div class="form-group"><label class="form-label">Email *</label><input type="email" id="pa-email" class="form-input" placeholder="you@email.com"></div><div class="form-group"><label class="form-label">Why should you be chosen? *</label><textarea id="pa-message" class="form-input" rows="5" placeholder="Tell us what makes your build or community idea stand out..."></textarea></div><div id="poweradream-apply-msg"></div><button class="btn btn-red" style="width:100%;" onclick="submitPowerADreamApplication()">Submit Application</button></div></div></div></section>
 
 <section id="custom-section" style="display:none;"><div class="wrap"><div class="sec-label">More</div><div class="sec-title">EXTRAS</div><div class="custom-blocks" id="custom-blocks-render"></div></div></section>
 
@@ -360,6 +378,15 @@ textarea.admin-input{resize:vertical;min-height:90px;font-family:var(--body);}
   updated_at timestamptz default now()
 );
 
+create table if not exists poweradream_applications (
+  id bigint generated always as identity primary key,
+  name text not null,
+  email text not null,
+  message text not null,
+  status text not null default 'pending',
+  created_at timestamptz default now()
+);
+
 alter table site_content enable row level security;
 
 create policy "Public read" on site_content
@@ -406,6 +433,7 @@ create policy "Public write" on site_content
         <div class="admin-sidebar-section">Content</div>
         <button class="admin-nav-btn active" onclick="showPanel('hero',this)"><span class="nav-icon">🏠</span>Hero</button>
         <button class="admin-nav-btn" onclick="showPanel('services',this)"><span class="nav-icon">🔧</span>Services</button>
+        <button class="admin-nav-btn" onclick="showPanel('poweradream',this)"><span class="nav-icon">🎮</span>PowerADream</button>
         <button class="admin-nav-btn" onclick="showPanel('faq',this)"><span class="nav-icon">❓</span>FAQ</button>
         <button class="admin-nav-btn" onclick="showPanel('extras',this)"><span class="nav-icon">✦</span>Extras / Decals</button>
         <button class="admin-nav-btn" onclick="showPanel('philosophy',this)"><span class="nav-icon">💬</span>Philosophy</button>
@@ -492,6 +520,34 @@ create policy "Public write" on site_content
           </div>
         </div>
 
+        <div class="admin-panel" id="panel-poweradream">
+          <div class="admin-panel-title">PowerADream</div>
+          <div class="admin-panel-desc">Edit the PowerADream Fund message and donation goal.</div>
+          <div class="admin-card">
+            <div class="admin-card-title">Fund Description</div>
+            <textarea class="admin-input" id="a-poweradream-copy" rows="5"></textarea>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Donation Goal</div>
+            <label class="admin-label">Sales required for the next donated setup</label>
+            <input type="number" min="1" class="admin-input" id="a-poweradream-goal">
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Sales Count</div>
+            <label class="admin-label">Current sales toward the next PowerADream donation</label>
+            <input type="number" min="0" class="admin-input" id="a-poweradream-sales">
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <button class="admin-save-btn" onclick="saveSection('poweradream')">Save &amp; Publish</button>
+            <span class="admin-feedback ok" id="poweradream-fb"></span>
+          </div>
+          <div class="admin-card">
+            <div class="admin-card-title">Applications</div>
+            <div id="admin-poweradream-list" style="font-family:var(--mono);font-size:0.75rem;color:var(--muted);">Loading…</div>
+          </div>
+        </div>
+        </div>
+
         <div class="admin-panel" id="panel-reviews">
           <div class="admin-panel-title">Reviews</div>
           <div class="admin-panel-desc">Delete reviews you don't want shown publicly</div>
@@ -544,6 +600,11 @@ const DEFAULTS={
     {q:'Where are you located?',a:"Based in Scottsburg, IN, serving the surrounding area. Reach out and we'll figure out logistics — most jobs are handled locally with easy dropoff and pickup."}
   ],
   blocks:[],
+  poweradream:{
+    copy:'PowerADream lets less fortunate families apply for a donated gaming setup. Every 25 sales funds one donated setup to a youth in need, using 15%–35% of net profits each quarter.',
+    goal:25,
+    salesCount:0
+  },
   password:'scpc2024'
 };
 
@@ -572,7 +633,7 @@ function setSyncStatus(state,label){
 }
 
 // ── RENDER ──
-function renderAll(){renderHero();renderServices();renderFaq();renderBlocks();renderPhilosophy();renderReviews();}
+function renderAll(){renderHero();renderServices();renderPowerADream();renderFaq();renderBlocks();renderPhilosophy();renderReviews();}
 
 function renderHero(){
   const h=siteData.hero||DEFAULTS.hero;
@@ -618,6 +679,49 @@ function renderBlocks(){
     </div>`).join('');
 }
 
+async function renderPowerADream(){
+  const p=siteData.poweradream||DEFAULTS.poweradream;
+  const copyEl=document.getElementById('poweradream-copy');
+  const textEl=document.getElementById('poweradream-progress-text');
+  const fillEl=document.getElementById('poweradream-progress-fill');
+  if(copyEl)copyEl.textContent=p.copy;
+  if(textEl)textEl.textContent=`0 of ${p.goal}`;
+  if(fillEl)fillEl.style.width='0%';
+  renderPowerADreamApplicationsPublic();
+  renderPowerADreamProgress();
+}
+
+async function renderPowerADreamApplicationsPublic(){
+  const container=document.getElementById('poweradream-forum');
+  if(!container)return;
+  container.innerHTML='<p style="color:var(--muted);font-family:var(--mono);font-size:0.8rem;grid-column:1/-1;">Loading approved family applications…</p>';
+  try{
+    const{data,error}=await db.from('poweradream_applications').select('*').eq('status','approved').order('created_at',{ascending:false});
+    if(error||!data||!data.length){container.innerHTML='<p style="color:var(--muted);font-family:var(--mono);font-size:0.8rem;grid-column:1/-1;">No approved family applications yet.</p>';return;}
+    container.innerHTML=data.map(a=>`
+      <div class="poweradream-card">
+        <div style="font-size:1rem;color:var(--white);font-weight:600;">${a.name}</div>
+        <div style="font-size:0.92rem;color:var(--muted);line-height:1.6;margin:0.75rem 0;">${a.message}</div>
+        <div class="poweradream-card-meta">
+          <span>${new Date(a.created_at).toLocaleDateString()}</span>
+          <span class="poweradream-card-status approved">Approved</span>
+        </div>
+      </div>`).join('');
+  }catch(e){container.innerHTML='<p style="color:var(--muted);font-family:var(--mono);font-size:0.8rem;grid-column:1/-1;">No approved applications yet.</p>';}
+}
+
+async function renderPowerADreamProgress(){
+  const p=siteData.poweradream||DEFAULTS.poweradream;
+  const textEl=document.getElementById('poweradream-progress-text');
+  const fillEl=document.getElementById('poweradream-progress-fill');
+  if(!textEl||!fillEl)return;
+  const sales=(p.salesCount||0);
+  const goal=p.goal||25;
+  const pct=Math.min(100,Math.round((sales/goal)*100));
+  textEl.textContent=`${sales} of ${goal}`;
+  fillEl.style.width=`${pct}%`;
+}
+
 // ── REVIEWS ──
 let currentRating=5;
 function setRating(v){
@@ -652,6 +756,50 @@ async function submitReview(){
   document.getElementById('r-name').value='';document.getElementById('r-email').value='';document.getElementById('r-text').value='';
   document.getElementById('review-form-wrap').classList.add('hidden');
   renderReviews();
+}
+
+async function submitPowerADreamApplication(){
+  const name=document.getElementById('pa-name').value.trim();
+  const email=document.getElementById('pa-email').value.trim();
+  const message=document.getElementById('pa-message').value.trim();
+  const msg=document.getElementById('poweradream-apply-msg');
+  if(!name||!email||!message){msg.className='form-msg error';msg.textContent='Please fill out all fields.';return;}
+  try{
+    const{error}=await db.from('poweradream_applications').insert([{name,email,message,status:'pending',created_at:new Date().toISOString()}]);
+    if(error)throw error;
+    msg.className='form-msg success';msg.textContent='Application submitted. We will review it soon.';
+    document.getElementById('pa-name').value='';document.getElementById('pa-email').value='';document.getElementById('pa-message').value='';
+    renderPowerADreamProgress();
+  }catch(e){msg.className='form-msg error';msg.textContent='Something went wrong. Please try again later.';}
+}
+
+async function loadAdminPowerADream(){
+  const list=document.getElementById('admin-poweradream-list');
+  if(!list)return;
+  list.innerHTML='<p style="margin:0;color:var(--muted);font-family:var(--mono);font-size:0.75rem;">Loading applications…</p>';
+  try{
+    const{data,error}=await db.from('poweradream_applications').select('*').order('created_at',{ascending:false});
+    if(error||!data||!data.length){list.innerHTML='<p style="margin:0;color:var(--muted);font-family:var(--mono);font-size:0.75rem;">No applications yet.</p>';return;}
+    list.innerHTML=data.map(a=>`
+      <div class="review-admin-card">
+        <div style="flex:1;">
+          <div style="font-size:0.95rem;color:var(--white);font-weight:600;margin-bottom:0.35rem;">${a.name}</div>
+          <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-bottom:0.75rem;">${a.email} · ${new Date(a.created_at).toLocaleDateString()}</div>
+          <div style="font-size:0.9rem;color:var(--muted);line-height:1.6;">${a.message}</div>
+          <div class="poweradream-card-meta"><span>${(a.status||'pending').toUpperCase()}</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;">
+          ${a.status==='pending'?`<button class="review-delete-btn" onclick="updateApplicationStatus(${a.id},'approved',this)">Approve</button><button class="review-delete-btn" onclick="updateApplicationStatus(${a.id},'rejected',this)">Reject</button>`:'<span style="font-family:var(--mono);font-size:0.7rem;color:var(--muted);">No actions available</span>'}
+        </div>
+      </div>`).join('');
+  }catch(e){list.innerHTML='<p style="margin:0;color:var(--muted);font-family:var(--mono);font-size:0.75rem;">Unable to load applications.</p>';}
+}
+
+async function updateApplicationStatus(id,status,btn){
+  if(!confirm(`Set application #${id} to ${status}?`))return;
+  btn.disabled=true;btn.textContent='…';
+  const{error}=await db.from('poweradream_applications').update({status}).eq('id',id);
+  if(!error){loadAdminPowerADream();renderPowerADream();}else{btn.textContent='Error';}
 }
 
 // ── CONTACT ──
@@ -701,6 +849,7 @@ function showPanel(name,btn){
   document.getElementById('panel-'+name).classList.add('active');
   if(btn)btn.classList.add('active');
   if(name==='reviews')loadAdminReviews();
+  if(name==='poweradream')loadAdminPowerADream();
 }
 
 function loadAdminPanels(){
@@ -711,6 +860,10 @@ function loadAdminPanels(){
   document.getElementById('a-hero-line3').value=h.line3||'';
   document.getElementById('a-hero-sub').value=h.sub||'';
   document.getElementById('a-philosophy').value=siteData.philosophy||DEFAULTS.philosophy;
+  const p=siteData.poweradream||DEFAULTS.poweradream;
+  document.getElementById('a-poweradream-copy').value=p.copy||'';
+  document.getElementById('a-poweradream-goal').value=p.goal||25;
+  document.getElementById('a-poweradream-sales').value=p.salesCount||0;
   renderServiceEditor();renderFaqEditor();renderBlocksEditor();
 }
 
@@ -726,6 +879,7 @@ async function saveSection(key){
   else if(key==='services')value=siteData.services;
   else if(key==='faqs')value=siteData.faqs;
   else if(key==='blocks')value=siteData.blocks;
+  else if(key==='poweradream')value={copy:document.getElementById('a-poweradream-copy').value,goal:parseInt(document.getElementById('a-poweradream-goal').value)||25,salesCount:parseInt(document.getElementById('a-poweradream-sales').value)||0};
 
   const ok=await dbSet(key,value);
   if(ok){
